@@ -1,0 +1,163 @@
+:root {
+  --bg: #fdf8f3;
+  --card: #ffffff;
+  --text: #3b2a1e;
+  --muted: #8a7566;
+  --accent: #b5651d;
+  --accent-soft: #f3e3d3;
+  --border: #ecdccb;
+  --done: #b9a999;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1d1712;
+    --card: #2a221b;
+    --text: #f2e6da;
+    --muted: #b09a88;
+    --accent: #e0914a;
+    --accent-soft: #3d2f22;
+    --border: #3d3127;
+    --done: #6f6155;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 4px;
+  padding: calc(env(safe-area-inset-top) + 8px) 8px 8px;
+  background: var(--accent); color: #fff;
+}
+.topbar h1 {
+  flex: 1; margin: 0 8px; font-size: 20px; font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.icon-btn {
+  width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: transparent; color: inherit; font-size: 24px; cursor: pointer;
+}
+.icon-btn:active { background: rgba(255,255,255,.2); }
+.icon-btn.spin { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.status {
+  padding: 8px 16px; font-size: 14px;
+  background: var(--accent-soft); color: var(--text);
+}
+
+main { max-width: 720px; margin: 0 auto; padding: 16px; padding-bottom: calc(env(safe-area-inset-bottom) + 32px); }
+
+/* 列表 */
+.search {
+  width: 100%; padding: 12px 16px; font-size: 17px;
+  border: 1px solid var(--border); border-radius: 12px;
+  background: var(--card); color: var(--text);
+}
+.chips { display: flex; gap: 8px; overflow-x: auto; padding: 12px 0; scrollbar-width: none; }
+.chip {
+  flex: none; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--card); color: var(--text);
+  font-size: 15px; cursor: pointer;
+}
+.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.list { display: grid; gap: 12px; }
+.card {
+  display: flex; gap: 12px; align-items: center;
+  padding: 12px; border-radius: 14px;
+  background: var(--card); border: 1px solid var(--border);
+  color: inherit; text-decoration: none;
+}
+.card .thumb {
+  width: 72px; height: 72px; flex: none; border-radius: 10px;
+  background: var(--accent-soft) center/cover no-repeat;
+  display: grid; place-items: center; font-size: 30px;
+}
+.card h2 { margin: 0; font-size: 18px; }
+.card .meta { color: var(--muted); font-size: 14px; }
+.empty { text-align: center; color: var(--muted); padding: 48px 0; }
+
+/* 詳細頁 */
+.hero { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 14px; background: var(--accent-soft); }
+.detail h2 { font-size: 24px; margin: 12px 0 4px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; color: var(--muted); font-size: 15px; }
+.tags span { background: var(--accent-soft); padding: 2px 10px; border-radius: 999px; }
+.section { margin-top: 24px; }
+.section h3 { font-size: 19px; margin: 0 0 8px; color: var(--accent); }
+
+.scale { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; color: var(--muted); font-size: 15px; }
+.scale .chip { padding: 4px 12px; }
+
+.ingredients { list-style: none; padding: 0; margin: 0; }
+.ingredients li.ing {
+  display: flex; gap: 12px; align-items: baseline;
+  padding: 8px 4px; border-bottom: 1px dashed var(--border); cursor: pointer;
+}
+.ingredients li.ing::before {
+  content: ""; width: 18px; height: 18px; flex: none; align-self: center;
+  border: 2px solid var(--accent); border-radius: 5px;
+}
+.ingredients .name { flex: 1; min-width: 0; }
+.ingredients .qty { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.ingredients li.done { color: var(--done); }
+.ingredients li.done .name { text-decoration: line-through; }
+.ingredients li.done::before { background: var(--accent); box-shadow: inset 0 0 0 3px var(--card); }
+.ingredients li.group, .steps li.group {
+  font-weight: 600; color: var(--accent); padding: 18px 4px 4px; font-size: 16px;
+}
+.ingredients li.total {
+  display: flex; justify-content: space-between; padding: 6px 4px 6px 34px;
+  color: var(--muted); font-size: 15px; font-variant-numeric: tabular-nums;
+}
+.letter {
+  display: inline-grid; place-items: center; width: 20px; height: 20px; margin-right: 6px;
+  border-radius: 4px; background: var(--accent-soft); color: var(--accent);
+  font-size: 13px; font-weight: 700; vertical-align: 1px;
+}
+.hint { color: var(--muted); font-size: 13px; margin: 8px 0 0; }
+
+.steps { padding-left: 0; margin: 0; list-style: none; }
+.steps li.step {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 10px 4px; border-bottom: 1px dashed var(--border); cursor: pointer;
+}
+.steps .num {
+  flex: none; width: 26px; height: 26px; margin-top: 1px; border-radius: 50%;
+  background: var(--accent); color: #fff; font-size: 14px;
+  display: grid; place-items: center;
+}
+.steps li.plain .num { background: transparent; }
+.steps li.plain .num::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.steps li.done { color: var(--done); }
+.steps li.done .num { background: var(--done); }
+.card-body { min-width: 0; }
+.source { color: var(--muted); font-size: 13px; margin-top: 24px; }
+.notes { white-space: pre-wrap; background: var(--accent-soft); padding: 12px 16px; border-radius: 12px; }
+
+.toggle { display: flex; align-items: center; gap: 8px; margin-top: 16px; color: var(--muted); font-size: 15px; }
+
+/* 設定 */
+.form label { display: block; font-weight: 600; margin: 16px 0 6px; }
+.form input[type=url] {
+  width: 100%; padding: 12px; font-size: 15px;
+  border: 1px solid var(--border); border-radius: 10px;
+  background: var(--card); color: var(--text);
+}
+.btn {
+  display: inline-block; margin-top: 12px; padding: 12px 20px; border: 0; border-radius: 10px;
+  background: var(--accent); color: #fff; font-size: 16px; cursor: pointer;
+}
+.btn.secondary { background: var(--accent-soft); color: var(--text); }
+.help { color: var(--muted); font-size: 14px; }
+.help ol { padding-left: 20px; }
+code { background: var(--accent-soft); padding: 1px 6px; border-radius: 4px; font-size: 13px; word-break: break-all; }

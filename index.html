@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#b5651d">
+  <meta name="description" content="個人烘焙食譜本，可離線使用">
+  <title>烘焙食譜</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button id="backBtn" class="icon-btn" aria-label="返回" hidden>‹</button>
+    <h1 id="title">烘焙食譜</h1>
+    <button id="refreshBtn" class="icon-btn" aria-label="重新同步">⟳</button>
+    <button id="settingsBtn" class="icon-btn" aria-label="設定">⚙</button>
+  </header>
+
+  <div id="status" class="status" hidden></div>
+
+  <main id="app"></main>
+
+  <script src="app.js"></script>
+</body>
+</html>
